@@ -71,52 +71,7 @@ if (isset($_GET['edit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Beasiswa - Admin</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .admin-header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-        .admin-nav {
-            background-color: #34495e;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-        .admin-nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 0;
-            padding: 0;
-        }
-        .admin-nav ul li {
-            margin: 0 1rem;
-        }
-        .admin-nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .admin-nav ul li a:hover,
-        .admin-nav ul li a.active {
-            background-color: #2c3e50;
-        }
-        .form-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        @media (max-width: 768px) {
-            .form-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
     <header class="admin-header">

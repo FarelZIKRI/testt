@@ -70,6 +70,7 @@ Sistem pendaftaran beasiswa online untuk kampus dengan fitur CRUD (Create, Read,
 - **Frontend**: HTML5, CSS3 (tanpa framework)
 - **Database**: MySQL
 - **JavaScript**: Vanilla JS untuk validasi dan interaktivitas
+- **CSS Architecture**: Terpisah antara user dan admin untuk maintainability
 
 ## Struktur Folder
 
@@ -94,7 +95,8 @@ sistem_beasiswa/
 │   └── logout.php           # Logout admin
 ├── assets/
 │   ├── css/
-│   │   └── style.css        # Stylesheet utama
+│   │   ├── style.css        # Stylesheet utama (mahasiswa)
+│   │   └── admin.css        # Stylesheet khusus admin
 │   └── js/
 │       └── script.js        # JavaScript untuk interaktivitas
 ├── uploads/                 # Folder untuk file upload
@@ -190,6 +192,17 @@ define('DB_NAME', 'sistem_beasiswa');
 - Breakpoint: 768px
 - Tabel berubah menjadi card layout di mobile
 - Navigation yang mobile-friendly
+
+## CSS Architecture
+
+### Pemisahan CSS untuk Maintainability
+- **`style.css`**: CSS utama untuk halaman mahasiswa (beranda, daftar, hasil)
+- **`admin.css`**: CSS khusus untuk admin portal dengan styling yang terpisah
+- **Keuntungan**:
+  - Easier maintenance dan debugging
+  - Faster loading (hanya load CSS yang diperlukan)
+  - Better organization dan scalability
+  - Independent styling untuk user dan admin interface
 
 ## Pengembangan Lebih Lanjut
 

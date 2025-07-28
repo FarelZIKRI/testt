@@ -30,72 +30,7 @@ $pendaftaran_list = getPendaftaranWithFilter($status_filter, $beasiswa_filter);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan - Admin</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .admin-header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-        .admin-nav {
-            background-color: #34495e;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-        .admin-nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 0;
-            padding: 0;
-        }
-        .admin-nav ul li {
-            margin: 0 1rem;
-        }
-        .admin-nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .admin-nav ul li a:hover,
-        .admin-nav ul li a.active {
-            background-color: #2c3e50;
-        }
-        .stats-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .export-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .chart-container {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
     <header class="admin-header">

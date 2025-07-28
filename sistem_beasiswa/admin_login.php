@@ -35,38 +35,7 @@ if (isAdminLoggedIn()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - Sistem Beasiswa</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .login-container {
-            max-width: 400px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .login-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .login-header h2 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        .login-header p {
-            color: #666;
-        }
-        .back-link {
-            text-align: center;
-            margin-top: 2rem;
-        }
-        .back-link a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        .back-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body>
     <div class="container">
