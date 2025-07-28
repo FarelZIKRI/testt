@@ -6,7 +6,9 @@ Sistem pendaftaran beasiswa online untuk kampus dengan fitur CRUD (Create, Read,
 
 ### Jumlah User, Hak Akses, dan Peran
 
-**1 Jenis User Utama: Mahasiswa**
+**2 Jenis User dalam Sistem:**
+
+**1. Mahasiswa (User Utama)**
 - **Peran**: Pendaftar beasiswa
 - **Hak Akses**:
   - Melihat jenis beasiswa dan syarat-syaratnya
@@ -15,7 +17,20 @@ Sistem pendaftaran beasiswa online untuk kampus dengan fitur CRUD (Create, Read,
   - Upload berkas syarat
   - Melihat hasil pendaftaran beasiswa
 
-*Catatan: Sistem ini fokus pada user mahasiswa sesuai requirement. Tidak ada admin panel karena tidak disebutkan dalam studi kasus.*
+**2. Admin**
+- **Peran**: Pengelola sistem beasiswa
+- **Hak Akses**:
+  - Login ke admin portal
+  - Dashboard dengan statistik lengkap
+  - Kelola pendaftaran (verifikasi, tolak, hapus)
+  - Kelola jenis beasiswa (tambah, edit, hapus)
+  - Lihat detail pendaftaran lengkap
+  - Export laporan ke CSV
+  - Analisis trend dan statistik
+
+**Login Admin:**
+- Username: `admin`
+- Password: `admin123`
 
 ## Fitur Sistem
 
@@ -41,6 +56,14 @@ Sistem pendaftaran beasiswa online untuk kampus dengan fitur CRUD (Create, Read,
 - Responsive design (desktop & mobile)
 - Download berkas yang diupload
 
+### 4. Admin Portal
+- **Dashboard**: Statistik lengkap dengan grafik dan analisis
+- **Kelola Pendaftaran**: Filter, verifikasi, tolak, hapus pendaftaran
+- **Kelola Beasiswa**: CRUD jenis beasiswa dengan syarat IPK
+- **Detail Pendaftaran**: View lengkap dengan rekomendasi verifikasi
+- **Laporan**: Export CSV dengan filter, analisis trend
+- **Session Management**: Login/logout dengan keamanan session
+
 ## Teknologi yang Digunakan
 
 - **Backend**: PHP Native (tanpa framework)
@@ -53,20 +76,33 @@ Sistem pendaftaran beasiswa online untuk kampus dengan fitur CRUD (Create, Read,
 ```
 sistem_beasiswa/
 ├── config/
-│   └── database.php          # Konfigurasi database
+│   ├── database.php          # Konfigurasi database
+│   └── admin.php            # Konfigurasi admin & session
 ├── includes/
-│   └── functions.php         # Fungsi-fungsi helper
+│   ├── functions.php         # Fungsi-fungsi helper
+│   └── admin_functions.php   # Fungsi khusus admin
 ├── pages/
 │   ├── home.php             # Halaman beranda
 │   ├── daftar.php           # Form pendaftaran
 │   └── hasil.php            # Hasil pendaftaran
+├── admin/                   # Admin Portal
+│   ├── dashboard.php        # Dashboard admin
+│   ├── pendaftaran.php      # Kelola pendaftaran
+│   ├── detail_pendaftaran.php # Detail pendaftaran
+│   ├── beasiswa.php         # Kelola jenis beasiswa
+│   ├── laporan.php          # Laporan & export
+│   └── logout.php           # Logout admin
 ├── assets/
 │   ├── css/
 │   │   └── style.css        # Stylesheet utama
 │   └── js/
 │       └── script.js        # JavaScript untuk interaktivitas
 ├── uploads/                 # Folder untuk file upload
+│   ├── .htaccess            # Keamanan folder upload
+│   └── index.php            # Prevent direct access
 ├── index.php               # File utama aplikasi
+├── admin_login.php         # Halaman login admin
+├── check_upload.php        # Tool troubleshooting upload
 ├── database.sql            # Script database
 └── README.md               # Dokumentasi
 ```

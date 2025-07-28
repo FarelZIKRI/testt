@@ -31,6 +31,7 @@ if (!in_array($page, $allowed_pages)) {
                 <li><a href="?page=home" class="<?= $page == 'home' ? 'active' : '' ?>">Beranda</a></li>
                 <li><a href="?page=daftar" class="<?= $page == 'daftar' ? 'active' : '' ?>">Daftar Beasiswa</a></li>
                 <li><a href="?page=hasil" class="<?= $page == 'hasil' ? 'active' : '' ?>">Hasil Pendaftaran</a></li>
+                <li><a href="admin_login.php" style="background-color: #e74c3c; margin-left: 1rem;">🔐 Admin</a></li>
             </ul>
         </div>
     </nav>
