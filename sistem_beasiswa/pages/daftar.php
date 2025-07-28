@@ -47,9 +47,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_FILES['berkas_syarat']) || $_FILES['berkas_syarat']['error'] === UPLOAD_ERR_NO_FILE) {
         $errors[] = 'Berkas syarat harus diupload';
     } else {
-        $berkas_filename = uploadFile($_FILES['berkas_syarat']);
-        if (!$berkas_filename) {
-            $errors[] = 'Gagal mengupload berkas. Pastikan format file benar (PDF, JPG, PNG, ZIP) dan ukuran maksimal 5MB';
+        // Cek error upload
+        if ($_FILES['berkas_syarat']['error'] !== UPLOAD_ERR_OK) {
+            switch ($_FILES['berkas_syarat']['error']) {
+                case UPLOAD_ERR_INI_SIZE:
+                case UPLOAD_ERR_FORM_SIZE:
+                    $errors[] = 'Ukuran file terlalu besar (maksimal 5MB)';
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+                    $errors[] = 'File hanya terupload sebagian, silakan coba lagi';
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    $errors[] = 'Folder temporary tidak ditemukan';
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+                    $errors[] = 'Gagal menulis file ke disk';
+                    break;
+                default:
+                    $errors[] = 'Terjadi kesalahan saat upload file';
+            }
+        } else {
+            $berkas_filename = uploadFile($_FILES['berkas_syarat']);
+            if (!$berkas_filename) {
+                $errors[] = 'Gagal mengupload berkas. Pastikan format file benar (PDF, JPG, PNG, ZIP), ukuran maksimal 5MB, dan folder uploads dapat ditulis';
+            }
         }
     }
     

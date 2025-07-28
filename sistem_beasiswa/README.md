@@ -185,8 +185,15 @@ Untuk pengembangan selanjutnya, sistem dapat ditambahkan:
 - Pastikan database dan tabel sudah dibuat
 
 ### File Upload Error
-- Cek permission folder `uploads` (755/777)
-- Pastikan `upload_max_filesize` dan `post_max_size` di php.ini cukup besar
+- **Folder uploads tidak ada**: Sistem akan otomatis membuat folder, tapi pastikan permission direktori induk memungkinkan
+- **Permission denied**: Ubah permission folder `uploads` menjadi 755 atau 777
+  ```bash
+  chmod 755 uploads
+  # atau jika masih error
+  chmod 777 uploads
+  ```
+- **Upload size**: Pastikan `upload_max_filesize` dan `post_max_size` di php.ini cukup besar (minimal 6M)
+- **Troubleshooting**: Akses `check_upload.php` untuk diagnosis masalah upload
 
 ### JavaScript Not Working
 - Pastikan path file `assets/js/script.js` benar

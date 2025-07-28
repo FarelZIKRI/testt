@@ -64,6 +64,14 @@ function getAllPendaftaran() {
 // Fungsi untuk upload file
 function uploadFile($file) {
     $target_dir = "uploads/";
+    
+    // Buat folder uploads jika belum ada
+    if (!is_dir($target_dir)) {
+        if (!mkdir($target_dir, 0755, true)) {
+            return false; // Gagal membuat folder
+        }
+    }
+    
     $file_extension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
     $new_filename = uniqid() . '.' . $file_extension;
     $target_file = $target_dir . $new_filename;
@@ -76,6 +84,11 @@ function uploadFile($file) {
     
     // Cek ukuran file (max 5MB)
     if ($file["size"] > 5000000) {
+        return false;
+    }
+    
+    // Pastikan folder dapat ditulis
+    if (!is_writable($target_dir)) {
         return false;
     }
     
