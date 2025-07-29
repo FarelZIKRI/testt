@@ -7,7 +7,7 @@ $beasiswa_list = getAllBeasiswa();
 <div class="alert alert-info">
     <h4>Informasi Penting:</h4>
     <ul>
-        <li>Pastikan IPK Anda minimal 3.0 untuk dapat mendaftar beasiswa</li>
+        <li>Sistem akan generate IPK random (2.60-4.00), minimal 3.0 untuk dapat mendaftar beasiswa</li>
         <li>Siapkan berkas syarat dalam format PDF, JPG, PNG, atau ZIP (maksimal 5MB)</li>
         <li>Isi data dengan lengkap dan benar</li>
         <li>Setelah mendaftar, status ajuan akan menjadi "belum di verifikasi"</li>
@@ -32,7 +32,7 @@ $beasiswa_list = getAllBeasiswa();
                     <h4>Syarat Umum:</h4>
                     <ul>
                         <li>Mahasiswa aktif semester 1-8</li>
-                        <li>IPK minimal <?= number_format($beasiswa['syarat_ipk'], 2) ?></li>
+                        <li>IPK minimal <?= number_format($beasiswa['syarat_ipk'], 2) ?> (sistem generate 2.60-4.00)</li>
                         <li>Melengkapi berkas persyaratan</li>
                         <li>Mengisi formulir pendaftaran dengan benar</li>
                     </ul>
@@ -54,7 +54,7 @@ $beasiswa_list = getAllBeasiswa();
         <li><strong>Klik "Daftar Beasiswa"</strong> - Buka halaman formulir pendaftaran</li>
         <li><strong>Isi Data Pribadi</strong> - Masukkan nama, email, dan nomor HP</li>
         <li><strong>Pilih Semester</strong> - Pilih semester saat ini (1-8)</li>
-        <li><strong>Cek IPK Otomatis</strong> - Sistem akan menampilkan IPK Anda secara otomatis</li>
+        <li><strong>Cek IPK Otomatis</strong> - Sistem akan generate IPK random (2.60 - 4.00) secara otomatis</li>
         <li><strong>Pilih Jenis Beasiswa</strong> - Pilih beasiswa yang sesuai (jika IPK memenuhi syarat)</li>
         <li><strong>Upload Berkas</strong> - Upload berkas syarat dalam format yang diizinkan</li>
         <li><strong>Submit Pendaftaran</strong> - Klik tombol "Daftar Beasiswa"</li>

@@ -3,9 +3,11 @@ require_once 'config/database.php';
 
 // Fungsi untuk mendapatkan IPK (simulasi otomatis)
 function getIPK() {
-    // Simulasi IPK otomatis - bisa diganti dengan data real dari database
-    $ipk_options = [2.9, 3.1, 3.4, 3.7, 2.5, 3.8];
-    return $ipk_options[array_rand($ipk_options)];
+    // Simulasi IPK otomatis random antara 2.6 - 4.0
+    $min = 2.6;
+    $max = 4.0;
+    $ipk = $min + mt_rand() / mt_getrandmax() * ($max - $min);
+    return round($ipk, 2); // Bulatkan ke 2 desimal
 }
 
 // Fungsi untuk validasi email

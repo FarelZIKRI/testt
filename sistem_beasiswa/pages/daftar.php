@@ -161,6 +161,9 @@ $beasiswa_list = getAllBeasiswa();
                 Generate IPK Otomatis
             </button>
         </div>
+        <small style="color: #666; margin-top: 0.25rem; display: block;">
+            Sistem akan generate IPK random antara 2.60 - 4.00
+        </small>
         <input type="hidden" id="ipk" name="ipk" value="">
         <div id="ipk-message" style="margin-top: 0.5rem;"></div>
     </div>
@@ -202,7 +205,7 @@ $beasiswa_list = getAllBeasiswa();
         <li><strong>Email:</strong> Gunakan email aktif yang dapat dihubungi</li>
         <li><strong>Nomor HP:</strong> Masukkan nomor HP aktif (hanya angka)</li>
         <li><strong>Semester:</strong> Pilih semester saat ini (1-8)</li>
-        <li><strong>IPK:</strong> Klik tombol untuk generate IPK otomatis dari sistem</li>
+        <li><strong>IPK:</strong> Klik tombol untuk generate IPK otomatis (2.60 - 4.00) dari sistem</li>
         <li><strong>Jenis Beasiswa:</strong> Pilih sesuai minat dan syarat IPK</li>
         <li><strong>Berkas Syarat:</strong> Upload dokumen pendukung</li>
     </ol>

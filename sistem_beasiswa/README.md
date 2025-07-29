@@ -164,7 +164,13 @@ define('DB_NAME', 'sistem_beasiswa');
 ## Logika Bisnis
 
 ### Validasi IPK
-- IPK di-generate otomatis oleh sistem (simulasi)
+- IPK di-generate otomatis oleh sistem dengan rentang **2.60 - 4.00** (simulasi realistis)
+- **Distribusi IPK**:
+  - 2.60 - 2.99: Tidak memenuhi syarat beasiswa
+  - 3.00 - 3.24: Memenuhi syarat beasiswa non-akademik
+  - 3.25 - 3.49: Memenuhi syarat beasiswa prestasi dan non-akademik
+  - 3.50 - 3.74: Memenuhi syarat beasiswa akademik dan prestasi
+  - 3.75 - 4.00: Memenuhi syarat semua jenis beasiswa
 - Jika IPK < 3.0: form beasiswa, upload, dan tombol submit dinonaktifkan
 - Jika IPK ≥ 3.0: semua elemen form aktif, fokus otomatis ke pilihan beasiswa
 

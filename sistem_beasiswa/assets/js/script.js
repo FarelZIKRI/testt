@@ -1,7 +1,9 @@
 // Fungsi untuk menampilkan IPK otomatis dan mengatur status form
 function checkIPK() {
-    // Simulasi mendapatkan IPK otomatis
-    const ipkValue = Math.random() < 0.6 ? 3.4 : 2.9; // 60% chance IPK >= 3.0
+    // Simulasi mendapatkan IPK otomatis random antara 2.6 - 4.0
+    const min = 2.6;
+    const max = 4.0;
+    const ipkValue = Math.round((min + Math.random() * (max - min)) * 100) / 100; // Bulatkan ke 2 desimal
     
     // Update display IPK
     const ipkDisplay = document.getElementById('ipk-display');
@@ -52,11 +54,27 @@ function toggleFormElements(enable) {
 function showIPKMessage(ipk) {
     const messageDiv = document.getElementById('ipk-message');
     if (messageDiv) {
-        if (ipk >= 3.0) {
-            messageDiv.innerHTML = '<div class="alert alert-success">IPK Anda memenuhi syarat untuk mendaftar beasiswa!</div>';
+        let message = '';
+        let alertClass = '';
+        
+        if (ipk >= 3.75) {
+            message = `IPK ${ipk} - Excellent! Memenuhi syarat semua jenis beasiswa.`;
+            alertClass = 'alert-success';
+        } else if (ipk >= 3.5) {
+            message = `IPK ${ipk} - Sangat Baik! Memenuhi syarat beasiswa akademik dan prestasi.`;
+            alertClass = 'alert-success';
+        } else if (ipk >= 3.25) {
+            message = `IPK ${ipk} - Baik! Memenuhi syarat beasiswa prestasi dan non-akademik.`;
+            alertClass = 'alert-success';
+        } else if (ipk >= 3.0) {
+            message = `IPK ${ipk} - Memenuhi syarat untuk beasiswa non-akademik.`;
+            alertClass = 'alert-success';
         } else {
-            messageDiv.innerHTML = '<div class="alert alert-danger">Maaf, IPK Anda belum memenuhi syarat minimum (3.0) untuk mendaftar beasiswa.</div>';
+            message = `IPK ${ipk} - Maaf, belum memenuhi syarat minimum (3.0) untuk mendaftar beasiswa.`;
+            alertClass = 'alert-danger';
         }
+        
+        messageDiv.innerHTML = `<div class="alert ${alertClass}">${message}</div>`;
     }
 }
 
