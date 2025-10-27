@@ -1,0 +1,14 @@
+# Mencegah eksekusi file PHP di folder uploads
+<Files "*.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Hanya izinkan file tertentu
+<FilesMatch "\.(pdf|jpg|jpeg|png|zip)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Mencegah browsing direktori
+Options -Indexes

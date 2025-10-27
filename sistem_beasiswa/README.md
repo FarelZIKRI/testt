@@ -1,0 +1,263 @@
+# Sistem Pendaftaran Beasiswa
+
+Sistem pendaftaran beasiswa online untuk kampus dengan fitur CRUD (Create, Read, Update, Delete) yang dibuat menggunakan PHP native, HTML/CSS, dan MySQL.
+
+## Analisis Studi Kasus
+
+### Jumlah User, Hak Akses, dan Peran
+
+**2 Jenis User dalam Sistem:**
+
+**1. Mahasiswa (User Utama)**
+- **Peran**: Pendaftar beasiswa
+- **Hak Akses**:
+  - Melihat jenis beasiswa dan syarat-syaratnya
+  - Mendaftar beasiswa (jika IPK ≥ 3.0)
+  - Mengisi form pendaftaran
+  - Upload berkas syarat
+  - Melihat hasil pendaftaran beasiswa
+
+**2. Admin**
+- **Peran**: Pengelola sistem beasiswa
+- **Hak Akses**:
+  - Login ke admin portal
+  - Dashboard dengan statistik lengkap
+  - Kelola pendaftaran (verifikasi, tolak, hapus)
+  - Kelola jenis beasiswa (tambah, edit, hapus)
+  - Lihat detail pendaftaran lengkap
+  - Export laporan ke CSV
+  - Analisis trend dan statistik
+
+**Login Admin:**
+- Username: `admin`
+- Password: `admin123`
+
+## Fitur Sistem
+
+### 1. Halaman Utama (Beranda)
+- Informasi jenis beasiswa yang tersedia
+- Syarat dan ketentuan beasiswa
+- Panduan cara mendaftar
+- Informasi kontak
+
+### 2. Form Pendaftaran Beasiswa
+- Input nama lengkap
+- Input email dengan validasi format
+- Input nomor HP (hanya angka)
+- Pilihan semester (1-8)
+- IPK otomatis dari sistem (simulasi)
+- Pilihan jenis beasiswa (aktif jika IPK ≥ 3.0)
+- Upload berkas syarat (PDF, JPG, PNG, ZIP)
+- Validasi client-side dan server-side
+
+### 3. Hasil Pendaftaran
+- Tampilan semua data pendaftaran
+- Status ajuan: "belum di verifikasi"
+- Responsive design (desktop & mobile)
+- Download berkas yang diupload
+
+### 4. Admin Portal
+- **Dashboard**: Statistik lengkap dengan grafik dan analisis
+- **Kelola Pendaftaran**: Filter, verifikasi, tolak, hapus pendaftaran
+- **Kelola Beasiswa**: CRUD jenis beasiswa dengan syarat IPK
+- **Detail Pendaftaran**: View lengkap dengan rekomendasi verifikasi
+- **Laporan**: Export CSV dengan filter, analisis trend
+- **Session Management**: Login/logout dengan keamanan session
+
+## Teknologi yang Digunakan
+
+- **Backend**: PHP Native (tanpa framework)
+- **Frontend**: HTML5, CSS3 (tanpa framework)
+- **Database**: MySQL
+- **JavaScript**: Vanilla JS untuk validasi dan interaktivitas
+- **CSS Architecture**: Terpisah antara user dan admin untuk maintainability
+
+## Struktur Folder
+
+```
+sistem_beasiswa/
+├── config/
+│   ├── database.php          # Konfigurasi database
+│   └── admin.php            # Konfigurasi admin & session
+├── includes/
+│   ├── functions.php         # Fungsi-fungsi helper
+│   └── admin_functions.php   # Fungsi khusus admin
+├── pages/
+│   ├── home.php             # Halaman beranda
+│   ├── daftar.php           # Form pendaftaran
+│   └── hasil.php            # Hasil pendaftaran
+├── admin/                   # Admin Portal
+│   ├── dashboard.php        # Dashboard admin
+│   ├── pendaftaran.php      # Kelola pendaftaran
+│   ├── detail_pendaftaran.php # Detail pendaftaran
+│   ├── beasiswa.php         # Kelola jenis beasiswa
+│   ├── laporan.php          # Laporan & export
+│   └── logout.php           # Logout admin
+├── assets/
+│   ├── css/
+│   │   ├── style.css        # Stylesheet utama (mahasiswa)
+│   │   └── admin.css        # Stylesheet khusus admin
+│   └── js/
+│       └── script.js        # JavaScript untuk interaktivitas
+├── uploads/                 # Folder untuk file upload
+│   ├── .htaccess            # Keamanan folder upload
+│   └── index.php            # Prevent direct access
+├── index.php               # File utama aplikasi
+├── admin_login.php         # Halaman login admin
+├── check_upload.php        # Tool troubleshooting upload
+├── database.sql            # Script database
+└── README.md               # Dokumentasi
+```
+
+## Instalasi dan Setup
+
+### 1. Persiapan Database
+
+1. Buat database MySQL:
+```sql
+CREATE DATABASE sistem_beasiswa;
+```
+
+2. Import file `database.sql` ke database:
+```bash
+mysql -u root -p sistem_beasiswa < database.sql
+```
+
+### 2. Konfigurasi Database
+
+Edit file `config/database.php` sesuai dengan pengaturan database Anda:
+
+```php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'sistem_beasiswa');
+```
+
+### 3. Setup Web Server
+
+1. Copy folder `sistem_beasiswa` ke direktori web server (htdocs/www)
+2. Pastikan folder `uploads` memiliki permission write (755 atau 777)
+3. Akses aplikasi melalui browser: `http://localhost/sistem_beasiswa`
+
+## Database Schema
+
+### Tabel `jenis_beasiswa`
+- `id` (INT, PRIMARY KEY, AUTO_INCREMENT)
+- `nama_beasiswa` (VARCHAR 100)
+- `syarat_ipk` (DECIMAL 3,2)
+- `deskripsi` (TEXT)
+- `created_at` (TIMESTAMP)
+
+### Tabel `pendaftaran_beasiswa`
+- `id` (INT, PRIMARY KEY, AUTO_INCREMENT)
+- `nama` (VARCHAR 100)
+- `email` (VARCHAR 100)
+- `no_hp` (VARCHAR 15)
+- `semester` (INT)
+- `ipk` (DECIMAL 3,2)
+- `jenis_beasiswa_id` (INT, FOREIGN KEY)
+- `berkas_syarat` (VARCHAR 255)
+- `status_ajuan` (ENUM: 'belum di verifikasi', 'diverifikasi', 'ditolak')
+- `created_at` (TIMESTAMP)
+
+## Logika Bisnis
+
+### Validasi IPK
+- IPK di-generate otomatis oleh sistem dengan rentang **2.60 - 4.00** (simulasi realistis)
+- **Distribusi IPK**:
+  - 2.60 - 2.99: Tidak memenuhi syarat beasiswa
+  - 3.00 - 3.24: Memenuhi syarat beasiswa non-akademik
+  - 3.25 - 3.49: Memenuhi syarat beasiswa prestasi dan non-akademik
+  - 3.50 - 3.74: Memenuhi syarat beasiswa akademik dan prestasi
+  - 3.75 - 4.00: Memenuhi syarat semua jenis beasiswa
+- Jika IPK < 3.0: form beasiswa, upload, dan tombol submit dinonaktifkan
+- Jika IPK ≥ 3.0: semua elemen form aktif, fokus otomatis ke pilihan beasiswa
+
+### Validasi Form
+- **Client-side**: JavaScript untuk validasi real-time
+- **Server-side**: PHP untuk validasi final sebelum menyimpan
+- Email: format email valid
+- Nomor HP: hanya angka
+- File upload: PDF/JPG/PNG/ZIP, maksimal 5MB
+
+### Status Pendaftaran
+- Default: "belum di verifikasi"
+- Dapat diubah menjadi "diverifikasi" atau "ditolak" (melalui database)
+
+## Keamanan
+
+- Input sanitization dengan `htmlspecialchars()`
+- Prepared statements untuk query database
+- Validasi file upload (ekstensi dan ukuran)
+- CSRF protection melalui form validation
+
+## Responsive Design
+
+- Mobile-first approach
+- Breakpoint: 768px
+- Tabel berubah menjadi card layout di mobile
+- Navigation yang mobile-friendly
+
+## CSS Architecture
+
+### Pemisahan CSS untuk Maintainability
+- **`style.css`**: CSS utama untuk halaman mahasiswa (beranda, daftar, hasil)
+- **`admin.css`**: CSS khusus untuk admin portal dengan styling yang terpisah
+- **Keuntungan**:
+  - Easier maintenance dan debugging
+  - Faster loading (hanya load CSS yang diperlukan)
+  - Better organization dan scalability
+  - Independent styling untuk user dan admin interface
+
+## Pengembangan Lebih Lanjut
+
+Untuk pengembangan selanjutnya, sistem dapat ditambahkan:
+
+1. **Admin Panel**
+   - Login admin
+   - Verifikasi pendaftaran
+   - Manajemen jenis beasiswa
+
+2. **Notifikasi**
+   - Email notification
+   - SMS notification
+
+3. **Reporting**
+   - Export data ke Excel/PDF
+   - Statistik pendaftaran
+
+4. **Security Enhancement**
+   - Login system
+   - Session management
+   - Rate limiting
+
+## Troubleshooting
+
+### Error Database Connection
+- Pastikan MySQL service berjalan
+- Cek konfigurasi database di `config/database.php`
+- Pastikan database dan tabel sudah dibuat
+
+### File Upload Error
+- **Folder uploads tidak ada**: Sistem akan otomatis membuat folder, tapi pastikan permission direktori induk memungkinkan
+- **Permission denied**: Ubah permission folder `uploads` menjadi 755 atau 777
+  ```bash
+  chmod 755 uploads
+  # atau jika masih error
+  chmod 777 uploads
+  ```
+- **Upload size**: Pastikan `upload_max_filesize` dan `post_max_size` di php.ini cukup besar (minimal 6M)
+- **Troubleshooting**: Akses `check_upload.php` untuk diagnosis masalah upload
+
+### JavaScript Not Working
+- Pastikan path file `assets/js/script.js` benar
+- Cek console browser untuk error JavaScript
+
+## Kontribusi
+
+Sistem ini dibuat untuk keperluan pembelajaran web development tingkat junior. Silakan modifikasi sesuai kebutuhan.
+
+## Lisensi
+
+Open source - bebas digunakan untuk keperluan pembelajaran.
